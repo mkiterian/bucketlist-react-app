@@ -35,10 +35,10 @@ class AddItemForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        var item = {
-            title: this.state.title,
-            description: this.state.description
-        }
+        // let item = {
+        //     title: this.state.title,
+        //     description: this.state.description
+        // }
         // this.props.addItem(item);
         this.createItem(e);
     }

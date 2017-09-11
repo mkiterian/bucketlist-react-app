@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ROOT_URL from '../constants';
 import axios from 'axios';
 
-/**
- * A modal dialog can only be closed by selecting one of the actions.
- */
 
 const style = {
     margin: 12,
@@ -37,16 +33,14 @@ class UpdateBucketlistForm extends Component {
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        // this.props.bucketlist.name = e.target.name;
-        // this.props.bucketlist.description = e.target.description;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        var bucketlist = {
-            name: this.state.name,
-            description: this.state.description
-        }
+        // var bucketlist = {
+        //     name: this.state.name,
+        //     description: this.state.description
+        // }
         this.updateBucketlist(e);
     }
 

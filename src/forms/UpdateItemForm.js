@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ROOT_URL from '../constants';
 import axios from 'axios';
@@ -68,7 +67,6 @@ class UpdateItemForm extends Component {
                 "Authorization": `JWT ${window.sessionStorage.accessToken}`
             }
         }).then(function (response) {
-            console.log(response.data);
             this.setState({ open: false });
             this.props.getItems();
         }.bind(this));
@@ -91,11 +89,9 @@ class UpdateItemForm extends Component {
 
         return (
             <div>
-
             <a href=""><FontIcon className="material-icons"
                     onClick={this.handleOpen}
                 >mode_edit</FontIcon></a>
-
             
                 <Dialog
                     title="Update Item"
