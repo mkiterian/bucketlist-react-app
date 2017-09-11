@@ -28,20 +28,16 @@ class RegisterForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
     }
 
     requestRegister(e){
-        console.log("Here!");
         e.preventDefault();
-        console.log(this);
         let username = this.state.username;
         let email = this.state.email;
         let password = this.state.password
         let confirmPassword = this.state.confirmPassword;
         
         var payload = { "username": username, "email": email, "password": password, "confirm_password": confirmPassword };
-        console.log(payload);
         axios({
             method: 'post',
             url: ROOT_URL + '/api/v1/auth/register',

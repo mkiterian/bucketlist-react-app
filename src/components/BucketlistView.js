@@ -45,12 +45,10 @@ class BucketlistView extends Component {
       }
     }).then(response => {
       let bucketlist = response.data;
-      console.log(bucketlist);
       this.setState({
         bucketlist: bucketlist,
       })
     }).catch(error => {
-      console.log(error)
       return error;
     });
   }

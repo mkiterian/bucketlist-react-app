@@ -37,7 +37,6 @@ class ItemCard extends Component {
     }
 
     render() {
-        console.log(this.props.item.name);
         return (
             <div className="Item">
                 <Card style={{ width: 60 + "%", marginLeft: 20 + "%", marginTop: 1 + "%" }}>

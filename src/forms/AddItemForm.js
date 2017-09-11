@@ -35,11 +35,6 @@ class AddItemForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // let item = {
-        //     title: this.state.title,
-        //     description: this.state.description
-        // }
-        // this.props.addItem(item);
         this.createItem(e);
     }
 
@@ -48,8 +43,6 @@ class AddItemForm extends Component {
         let title = this.state.title
         let description = this.state.description;
         let payload = { "title": title, "description": description };
-
-        console.log(payload);
 
         axios({
             method: 'post',
@@ -60,14 +53,10 @@ class AddItemForm extends Component {
                 "Authorization": `JWT ${window.sessionStorage.accessToken}`
             }
         }).then(function (response) {
-            console.log(response.data);
             this.setState({ open: false });
             this.props.getItems();
-            // window.location.reload();
         }.bind(this));
     }
-
-
 
     render() {
         const actions = [

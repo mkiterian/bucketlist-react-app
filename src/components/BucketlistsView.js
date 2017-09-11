@@ -18,7 +18,6 @@ class BucketlistsView extends Component {
   }
 
   componentWillMount() {
-    console.log("Happened")
     this.props.getBucketlists();
   }
 
@@ -60,12 +59,10 @@ class BucketlistsView extends Component {
         "Authorization": `JWT ${window.sessionStorage.accessToken}`,
       }
     }).then(response => {
-      console.log(this.state, 'initial');
       let bucketlists = response.data.bucketlists;
       this.setState({
         bucketlists: bucketlists,
       });
-      console.log(this.state, 'final');
     }).catch(error => {
       return error;
     });

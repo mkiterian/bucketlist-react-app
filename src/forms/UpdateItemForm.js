@@ -6,9 +6,6 @@ import FontIcon from 'material-ui/FontIcon';
 import ROOT_URL from '../constants';
 import axios from 'axios';
 
-/**
- * A modal dialog can only be closed by selecting one of the actions.
- */
 
 const style = {
     margin: 12,
@@ -36,8 +33,6 @@ class UpdateItemForm extends Component {
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        // this.props.bucketlist.name = e.target.name;
-        // this.props.bucketlist.description = e.target.description;
     }
 
     handleSubmit = (e) => {
@@ -56,8 +51,6 @@ class UpdateItemForm extends Component {
         let description = this.state.description;
         let payload = { "title": title, "description": description };
 
-        console.log(payload);
-
         axios({
             method: 'put',
             url: ROOT_URL + '/api/v1/bucketlists/'+bucketlistId+'/items/'+this.props.item.id,
@@ -73,7 +66,6 @@ class UpdateItemForm extends Component {
     }
 
     render() {
-        console.log(this.props.item);
         const actions = [
             <FlatButton
                 label="Cancel"
