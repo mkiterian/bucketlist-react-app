@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import UpdateBucketlistForm from '../forms/UpdateBucketlistForm';
-import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ROOT_URL from '../constants';
 import axios from 'axios';
@@ -50,7 +49,7 @@ class BucketlistCard extends Component {
                             id: this.props.bucketlist.id,
                         }}
                         className="bucketlist-name"
-                        id={this.props.bucketlist.id} name={this.props.bucketlist.name}>
+                     name={this.props.bucketlist.name}>
                         <CardTitle title={this.props.bucketlist.name} />
                     </Link>
 
