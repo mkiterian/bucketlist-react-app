@@ -56,7 +56,6 @@ class App extends Component {
         bucketlists: bucketlists,
       })
     }).catch(error => {
-      console.log(error)
       return error;
     });
   }
@@ -70,7 +69,6 @@ class App extends Component {
   
 
   render() {
-    console.log("rendering")
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
