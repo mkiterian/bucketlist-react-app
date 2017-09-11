@@ -3,7 +3,6 @@ import CreateBucketlistForm from '../forms/CreateBucketlistForm';
 import ROOT_URL from '../constants';
 import axios from 'axios';
 import BucketlistCard from './BucketlistCard';
-import { Link } from 'react-router-dom';
 import InNavAppBar from '../navigation/InNavAppBar';
 
 
