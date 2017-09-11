@@ -56,7 +56,7 @@ class BucketlistView extends Component {
   }
 
   render() {
-    this.state.bucket_list_id = this.props.location.id;
+    // this.state.bucket_list_id = this.props.location.id;
     let bucketlistId = this.props.match.params.id;
 
     const items = this.state.items;
