@@ -3,8 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+
 
 class CreateBucketlistForm extends Component {
     constructor() {
@@ -40,7 +39,6 @@ class CreateBucketlistForm extends Component {
             description: this.state.description
         }
         this.props.addBucketlist(bucketlist);
-        console.log(this);
         this.props.createBucketlist(e, this);
         this.setState({ open: false });
     }
