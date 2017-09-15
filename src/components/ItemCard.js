@@ -3,8 +3,7 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import UpdateItemForm from '../forms/UpdateItemForm';
 import FontIcon from 'material-ui/FontIcon';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+import helpers from '../helpers';
 
 class ItemCard extends Component {
     constructor() {
@@ -16,24 +15,6 @@ class ItemCard extends Component {
 
     handleClick(e) {
         this.setState({ selected_item: this.props.item.id });
-    }
-
-    deleteItem(e) {
-        e.preventDefault();
-        let item_id = this.props.item.id;
-        let bucketlist_id = this.props.bucketlistId;
-        alert("Confirm delete " + this.props.item.title)
-        axios({
-            method: 'delete',
-            url: ROOT_URL + '/api/v1/bucketlists/' + bucketlist_id + '/items/' + item_id,
-            headers: {
-                "Authorization": `JWT ${window.sessionStorage.accessToken}`,
-            }
-        }).then(response => {
-            this.props.getItems();
-        }).catch(error => {
-            return error;
-        });
     }
 
     render() {
@@ -52,7 +33,7 @@ class ItemCard extends Component {
                         </FlatButton>
                         <FlatButton label="Delete" style={{ width: 40 + "%" }}>
                             <a href=""><FontIcon className="material-icons"
-                                onClick={this.deleteItem.bind(this)}
+                                onClick={helpers.deleteItem.bind(this)}
                             >delete</FontIcon></a>
                         </FlatButton>
                     </CardActions>
