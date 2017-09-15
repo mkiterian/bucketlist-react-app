@@ -37,10 +37,6 @@ class UpdateBucketlistForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // var bucketlist = {
-        //     name: this.state.name,
-        //     description: this.state.description
-        // }
         this.updateBucketlist(e);
     }
 
