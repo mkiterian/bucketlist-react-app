@@ -63,6 +63,28 @@ let helpers = {
         }.bind(this));
     },
 
+    createBucketlist(e, createForm) {
+        e.preventDefault();
+        let name = createForm.state.name
+        let description = createForm.state.description;
+        let payload = { "name": name, "description": description };
+    
+        axios({
+          method: 'post',
+          url: ROOT_URL + '/api/v1/bucketlists',
+          data: payload,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `JWT ${window.sessionStorage.accessToken}`
+          }
+        }).then(function (response) {
+          this.setState({ name: payload.name, description: payload.description });
+          this.props.addBucketlist(payload);
+          this.props.getBucketlists();
+    
+        }.bind(this));
+      },
+
     deleteBucketlist(e) {
         e.preventDefault();
         var bucketlist_id = this.props.bucketlist.id;
