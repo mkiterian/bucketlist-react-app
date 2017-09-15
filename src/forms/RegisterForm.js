@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardTitle } from 'material-ui/Card';
-import ROOT_URL from '../constants';
-import axios from 'axios';
 import OutNavAppBar from '../navigation/OutNavAppBar';
+import helpers from '../helpers';
 
 
 const style = {
@@ -28,28 +27,6 @@ class RegisterForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-    }
-
-    requestRegister(e){
-        e.preventDefault();
-        let username = this.state.username;
-        let email = this.state.email;
-        let password = this.state.password
-        let confirmPassword = this.state.confirmPassword;
-        
-        var payload = { "username": username, "email": email, "password": password, "confirm_password": confirmPassword };
-        axios({
-            method: 'post',
-            url: ROOT_URL + '/api/v1/auth/register',
-            data: payload,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (response) {
-            window.sessionStorage.accessToken = response.data.access_token;
-            this.setState({authenticated: true});
-            this.props.history.push({pathname:'/login',state:this.state.authenticated});
-        }.bind(this));
     }
 
     render() {
@@ -95,7 +72,7 @@ class RegisterForm extends Component {
                         style={{ 'width': 80+'%' }}
                     /><br />
 
-                    <RaisedButton label="Register" onClick={this.requestRegister.bind(this)} primary={true} style={style} />
+                    <RaisedButton label="Register" onClick={helpers.requestRegister.bind(this)} primary={true} style={style} />
                     <br />
                 </form>
             </Card>
