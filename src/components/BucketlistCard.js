@@ -4,8 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import UpdateBucketlistForm from '../forms/UpdateBucketlistForm';
 import FontIcon from 'material-ui/FontIcon';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+import helpers from '../helpers';
 
 class BucketlistCard extends Component {
     constructor() {
@@ -19,23 +18,7 @@ class BucketlistCard extends Component {
         this.setState({ selected_bucketlist: this.props.bucketlist.id });
     }
 
-    deleteBucketlist(e) {
-        e.preventDefault();
-        var bucketlist_id = this.props.bucketlist.id;
-        alert("Confirm delete " + this.props.bucketlist.name)
-        axios({
-            method: 'delete',
-            url: ROOT_URL + '/api/v1/bucketlists/' + bucketlist_id,
-            headers: {
-                "Authorization": `JWT ${window.sessionStorage.accessToken}`,
-            }
-        }).then(response => {
-            this.props.getBucketlists();
-        }).catch(error => {
-            return error;
-        });
-        this.props.getBucketlists();
-    }
+    
 
     render() {
         return (
@@ -66,7 +49,7 @@ class BucketlistCard extends Component {
                         </FlatButton>
                         <FlatButton label="Delete" style={{ width: 40 + "%" }}>
                             <a href=""><FontIcon className="material-icons"
-                                onClick={this.deleteBucketlist.bind(this)}
+                                onClick={helpers.deleteBucketlist.bind(this)}
                             >delete</FontIcon></a>
                         </FlatButton>
                     </CardActions>
