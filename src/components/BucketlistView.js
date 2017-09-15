@@ -36,25 +36,7 @@ class BucketlistView extends Component {
     });
   }
 
-  getBucketlist() {
-    axios({
-      method: 'get',
-      url: ROOT_URL + '/api/v1/bucketlists/'+this.props.location.id,
-      headers: {
-        "Authorization": `JWT ${window.sessionStorage.accessToken}`,
-      }
-    }).then(response => {
-      let bucketlist = response.data;
-      this.setState({
-        bucketlist: bucketlist,
-      })
-    }).catch(error => {
-      return error;
-    });
-  }
-
   render() {
-    // this.state.bucket_list_id = this.props.location.id;
     let bucketlistId = this.props.match.params.id;
 
     const items = this.state.items;
