@@ -9,7 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blueGrey800, blueGrey500 } from 'material-ui/styles/colors';
 import { Route, Switch } from 'react-router-dom';
-import ROOT_URL from './constants';
 import helpers from './helpers';
 
 
