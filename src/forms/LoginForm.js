@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardTitle } from 'material-ui/Card';
-import ROOT_URL from '../constants';
-import axios from 'axios';
 import OutNavAppBar from '../navigation/OutNavAppBar';
+import helpers from '../helpers';
 
 const style = {
     margin: 12,
@@ -27,26 +26,6 @@ class LoginForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-    }
-
-    requestLogin(e) {
-        e.preventDefault();
-        let username = this.state.username;
-        let password = this.state.password;
-
-        var payload = { "username": username, "password": password };
-        axios({
-            method: 'post',
-            url: ROOT_URL + '/api/v1/auth/login',
-            data: payload,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (response) {
-            window.sessionStorage.accessToken = response.data.access_token;
-            this.setState({ authenticated: true });
-            this.props.history.push({ pathname: '/bucketlists', state: this.state.authenticated });
-        }.bind(this));
     }
 
     render() {
@@ -74,7 +53,7 @@ class LoginForm extends Component {
                             style={{ 'width': 80 + '%' }}
                         /><br />
                         <RaisedButton label="Login"
-                            onClick={this.requestLogin.bind(this)} primary={true} style={style} />
+                            onClick={helpers.requestLogin.bind(this)} primary={true} style={style} />
                         <br />
                     </form>
                 </Card>
