@@ -3,8 +3,6 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import ROOT_URL from '../constants';
-import axios from 'axios';
 import helpers from '../helpers';
 
 class AddItemForm extends Component {
