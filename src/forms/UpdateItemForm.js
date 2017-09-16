@@ -37,10 +37,6 @@ class UpdateItemForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        var item = {
-            title: this.state.title,
-            description: this.state.description
-        }
         this.updateItem(e);
     }
 
