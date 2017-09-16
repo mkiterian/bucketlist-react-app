@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import CreateBucketlistForm from '../forms/CreateBucketlistForm';
-import ROOT_URL from '../constants';
-import axios from 'axios';
 import BucketlistCard from './BucketlistCard';
 import InNavAppBar from '../navigation/InNavAppBar';
 import helpers from '../helpers';
@@ -10,7 +8,6 @@ import helpers from '../helpers';
 class BucketlistsView extends Component {
   constructor() {
     super();
-
     this.state = {
       name: '',
       description: '',
@@ -28,23 +25,6 @@ class BucketlistsView extends Component {
 
   handleFocus(e) {
     this.refs.search.value = "";
-  }
-
-  handleChange(e) {
-    axios({
-      method: 'get',
-      url: ROOT_URL + '/api/v1/bucketlists?q=' + e.target.value,
-      headers: {
-        "Authorization": `JWT ${window.sessionStorage.accessToken}`,
-      }
-    }).then(response => {
-      let bucketlists = response.data.bucketlists;
-      this.setState({
-        bucketlists: bucketlists,
-      });
-    }).catch(error => {
-      return error;
-    });
   }
 
   render() {
@@ -72,7 +52,7 @@ class BucketlistsView extends Component {
             ref="search"
             defaultValue="Search" required
             onFocus={this.handleFocus.bind(this)}
-            onChange={this.handleChange.bind(this)} />
+            onChange={helpers.searchBucketlists.bind(this)} />
         </div>
         <div className="wrapper">
           {bucketlists_list}
