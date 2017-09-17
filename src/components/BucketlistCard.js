@@ -12,6 +12,7 @@ class BucketlistCard extends Component {
         this.state = {
             selected_bucketlist: null,
         };
+        this.deleteBucketlist = helpers.deleteBucketlist.bind(this);
     }
 
     handleClick(e) {
@@ -46,7 +47,7 @@ class BucketlistCard extends Component {
                         </FlatButton>
                         <FlatButton label="Delete" style={{ width: 40 + "%" }}>
                             <a href=""><FontIcon className="material-icons"
-                                onClick={helpers.deleteBucketlist.bind(this)}
+                                onClick={this.deleteBucketlist}
                             >delete</FontIcon></a>
                         </FlatButton>
                     </CardActions>
