@@ -32,6 +32,7 @@ class App extends Component {
       bucketlists: [],
       bucketlist: {}
     };
+    this.getBucketlists = helpers.getBucketlists.bind(this);
   }
 
   addBucketlist(bucketlist) {
@@ -52,7 +53,7 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route exact path="/bucketlists/" render={()=>
-            <BucketlistsView getBucketlists={helpers.getBucketlists.bind(this)} 
+            <BucketlistsView getBucketlists={this.getBucketlists} 
                              addBucketlist = {this.addBucketlist.bind(this)}
                              bucketlists = {this.state.bucketlists}
                              bucketlist = {this.state.bucketlist}
