@@ -19,6 +19,7 @@ class RegisterForm extends Component {
             'password': '',
             confirmPassword: ''
         };
+        this.requestRegister = helpers.requestRegister.bind(this);
     }
 
     handleChange(e) {
@@ -71,8 +72,7 @@ class RegisterForm extends Component {
                         onChange={this.handleChange.bind(this)}
                         style={{ 'width': 80+'%' }}
                     /><br />
-
-                    <RaisedButton label="Register" onClick={helpers.requestRegister.bind(this)} primary={true} style={style} />
+                    <RaisedButton label="Register" onClick={this.requestRegister} primary={true} style={style} />
                     <br />
                 </form>
             </Card>
