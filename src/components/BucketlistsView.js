@@ -13,6 +13,8 @@ class BucketlistsView extends Component {
       description: '',
       bucketlists: []
     };
+    this.searchBucketlists = helpers.searchBucketlists.bind(this);
+    this.createBucketlist = helpers.createBucketlist.bind(this);
   }
 
   componentWillMount() {
@@ -52,14 +54,14 @@ class BucketlistsView extends Component {
             ref="search"
             defaultValue="Search" required
             onFocus={this.handleFocus.bind(this)}
-            onChange={helpers.searchBucketlists.bind(this)} />
+            onChange={this.searchBucketlists} />
         </div>
         <div className="wrapper">
           {bucketlists_list}
         </div>
         <CreateBucketlistForm bucketlists={this.props.bucketlists}
           addBucketlist={this.props.addBucketlist.bind(this)}
-          createBucketlist={helpers.createBucketlist.bind(this)} />
+          createBucketlist={this.createBucketlist} />
       </div>
     );
   }
