@@ -40,26 +40,6 @@ class UpdateBucketlistForm extends Component {
         this.updateBucketlist(e);
     }
 
-    // updateBucketlist = (e) => {
-    //     e.preventDefault();
-    //     let name = this.state.name
-    //     let description = this.state.description;
-    //     let payload = { "name": name, "description": description };
-
-    //     axios({
-    //         method: 'put',
-    //         url: ROOT_URL + '/api/v1/bucketlists/' + this.props.bucketlist.id,
-    //         data: payload,
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `JWT ${window.sessionStorage.accessToken}`
-    //         }
-    //     }).then(function (response) {
-    //         this.setState({ open: false });
-    //         this.props.getBucketlists();
-    //     }.bind(this));
-    // }
-
     render() {
         const actions = [
             <FlatButton
