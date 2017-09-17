@@ -24,7 +24,7 @@ class BucketlistView extends Component {
     const items = this.state.items;
     const items_list = items.map((item, index) => (
       <div className="collection center-align" key={item.id}>
-        <ItemCard item={item} bucketlistId={bucketlistId} getItems={helpers.getItems.bind(this)} />
+        <ItemCard item={item} bucketlistId={bucketlistId} getItems={this.getItems} />
       </div>)
     );
     return (
@@ -32,7 +32,7 @@ class BucketlistView extends Component {
       <div className="BucketlistsView">
         <InNavAppBar />
         <h3 >{this.props.match.params.id}</h3>
-        <AddItemForm bucketlistId={this.props.match.params.id} getItems={helpers.getItems.bind(this)} />
+        <AddItemForm bucketlistId={this.props.match.params.id} getItems={this.getItems} />
         <div className="wrapper">
           {items_list}
         </div>
