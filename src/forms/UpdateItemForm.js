@@ -3,20 +3,20 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+import helpers from '../helpers';
 
-
-const style = {
-    margin: 12,
-};
 
 class UpdateItemForm extends Component {
-    state = {
-        open: false,
-        title: '',
-        description: ''
-    };
+    constructor() {
+        super();
+
+        this.state = {
+            open: false,
+            title: '',
+            description: ''
+        };
+        this.updateItem = helpers.updateItem.bind(this)
+    }
 
     handleOpen = (e) => {
         e.preventDefault()
@@ -37,32 +37,7 @@ class UpdateItemForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        var item = {
-            title: this.state.title,
-            description: this.state.description
-        }
         this.updateItem(e);
-    }
-
-    updateItem = (e) => {
-        e.preventDefault();
-        let bucketlistId = this.props.bucketlistId;
-        let title = this.state.title
-        let description = this.state.description;
-        let payload = { "title": title, "description": description };
-
-        axios({
-            method: 'put',
-            url: ROOT_URL + '/api/v1/bucketlists/'+bucketlistId+'/items/'+this.props.item.id,
-            data: payload,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `JWT ${window.sessionStorage.accessToken}`
-            }
-        }).then(function (response) {
-            this.setState({ open: false });
-            this.props.getItems();
-        }.bind(this));
     }
 
     render() {

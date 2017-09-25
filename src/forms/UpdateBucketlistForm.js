@@ -3,20 +3,20 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+import helpers from '../helpers';
 
-
-const style = {
-    margin: 12,
-};
 
 class UpdateBucketlistForm extends Component {
-    state = {
-        open: false,
-        name: '',
-        description: ''
-    };
+    constructor() {
+        super();
+
+        this.state = {
+            open: false,
+            name: '',
+            description: ''
+        };
+        this.updateBucketlist = helpers.updateBucketlist.bind(this)
+    }
 
     handleOpen = (e) => {
         e.preventDefault()
@@ -38,26 +38,6 @@ class UpdateBucketlistForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.updateBucketlist(e);
-    }
-
-    updateBucketlist = (e) => {
-        e.preventDefault();
-        let name = this.state.name
-        let description = this.state.description;
-        let payload = { "name": name, "description": description };
-
-        axios({
-            method: 'put',
-            url: ROOT_URL + '/api/v1/bucketlists/' + this.props.bucketlist.id,
-            data: payload,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `JWT ${window.sessionStorage.accessToken}`
-            }
-        }).then(function (response) {
-            this.setState({ open: false });
-            this.props.getBucketlists();
-        }.bind(this));
     }
 
     render() {

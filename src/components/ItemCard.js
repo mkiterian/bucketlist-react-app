@@ -11,6 +11,7 @@ class ItemCard extends Component {
         this.state = {
             selected_item: null,
         };
+        this.deleteItem = helpers.deleteItem.bind(this);
     }
 
     handleClick(e) {
@@ -33,7 +34,7 @@ class ItemCard extends Component {
                         </FlatButton>
                         <FlatButton label="Delete" style={{ width: 40 + "%" }}>
                             <a href=""><FontIcon className="material-icons"
-                                onClick={helpers.deleteItem.bind(this)}
+                                onClick={this.deleteItem}
                             >delete</FontIcon></a>
                         </FlatButton>
                     </CardActions>

@@ -12,13 +12,14 @@ class BucketlistCard extends Component {
         this.state = {
             selected_bucketlist: null,
         };
+        this.deleteBucketlist = helpers.deleteBucketlist.bind(this);
     }
 
     handleClick(e) {
         this.setState({ selected_bucketlist: this.props.bucketlist.id });
     }
 
-    
+
 
     render() {
         return (
@@ -32,16 +33,13 @@ class BucketlistCard extends Component {
                             id: this.props.bucketlist.id,
                         }}
                         className="bucketlist-name"
-                     name={this.props.bucketlist.name}>
+                        name={this.props.bucketlist.name}>
                         <CardTitle title={this.props.bucketlist.name} />
                     </Link>
-
-
 
                     <CardText style={{ "fontSize": 1.2 + "em" }}>
                         {this.props.bucketlist.description}
                     </CardText>
-
 
                     <CardActions>
                         <FlatButton label="Update" style={{ width: 40 + "%" }}>
@@ -49,7 +47,7 @@ class BucketlistCard extends Component {
                         </FlatButton>
                         <FlatButton label="Delete" style={{ width: 40 + "%" }}>
                             <a href=""><FontIcon className="material-icons"
-                                onClick={helpers.deleteBucketlist.bind(this)}
+                                onClick={this.deleteBucketlist}
                             >delete</FontIcon></a>
                         </FlatButton>
                     </CardActions>
@@ -57,7 +55,6 @@ class BucketlistCard extends Component {
             </div>
         )
     }
-
 }
 
 export default BucketlistCard;

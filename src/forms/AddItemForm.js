@@ -3,8 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import ROOT_URL from '../constants';
-import axios from 'axios';
+import helpers from '../helpers';
 
 class AddItemForm extends Component {
     constructor() {
@@ -15,6 +14,7 @@ class AddItemForm extends Component {
             title: '',
             description: ''
         };
+        this.createItem = helpers.createItem.bind(this)
     }
 
     handleOpen = () => {
@@ -36,26 +36,6 @@ class AddItemForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.createItem(e);
-    }
-
-    createItem = (e) => {
-        e.preventDefault();
-        let title = this.state.title
-        let description = this.state.description;
-        let payload = { "title": title, "description": description };
-
-        axios({
-            method: 'post',
-            url: ROOT_URL + '/api/v1/bucketlists/' + this.props.bucketlistId + '/items',
-            data: payload,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `JWT ${window.sessionStorage.accessToken}`
-            }
-        }).then(function (response) {
-            this.setState({ open: false });
-            this.props.getItems();
-        }.bind(this));
     }
 
     render() {

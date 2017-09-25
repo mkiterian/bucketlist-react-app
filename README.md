@@ -20,3 +20,7 @@ $ npm start
 # Features
 - Create, update or delete bucketlists
 - Create, update or delete items to the bucketlists 
+
+# Demo
+
+https://immense-scrubland-73101.herokuapp.com

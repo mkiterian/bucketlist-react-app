@@ -18,6 +18,7 @@ class LoginForm extends Component {
             'password': '',
             'authenticated': false
         };
+        this.requestLogin = helpers.requestLogin.bind(this)
     }
 
     handleChange(e) {
@@ -53,7 +54,7 @@ class LoginForm extends Component {
                             style={{ 'width': 80 + '%' }}
                         /><br />
                         <RaisedButton label="Login"
-                            onClick={helpers.requestLogin.bind(this)} primary={true} style={style} />
+                            onClick={this.requestLogin} primary={true} style={style} />
                         <br />
                     </form>
                 </Card>

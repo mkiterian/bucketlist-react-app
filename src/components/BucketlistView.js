@@ -1,39 +1,21 @@
 import React, { Component } from 'react';
-import ROOT_URL from '../constants';
-import axios from 'axios';
 import AddItemForm from '../forms/AddItemForm';
 import ItemCard from './ItemCard';
 import InNavAppBar from '../navigation/InNavAppBar';
+import helpers from '../helpers';
 
 class BucketlistView extends Component {
   constructor() {
     super();
     this.state = {
       bucket_list_id: null,
-      items: []
+      items: [],
     }
+    this.getItems = helpers.getItems.bind(this);
   }
 
   componentWillMount() {
-    this.getItems();
-  }
-
-  getItems() {
-    var items = {};
-    axios({
-      method: 'get',
-      url: ROOT_URL + '/api/v1/bucketlists/' + this.props.match.params.id + '/items',
-      headers: {
-        "Authorization": `JWT ${window.sessionStorage.accessToken}`,
-      }
-    }).then(response => {
-      items = response.data.items;
-      this.setState({
-        items: items,
-      })
-    }).catch(error => {
-      return error;
-    });
+    this.getItems(this.props.match.params.id);
   }
 
   render() {
@@ -42,7 +24,7 @@ class BucketlistView extends Component {
     const items = this.state.items;
     const items_list = items.map((item, index) => (
       <div className="collection center-align" key={item.id}>
-        <ItemCard item={item} bucketlistId={bucketlistId} getItems={this.getItems.bind(this)} />
+        <ItemCard item={item} bucketlistId={bucketlistId} getItems={this.getItems} />
       </div>)
     );
     return (
@@ -50,7 +32,7 @@ class BucketlistView extends Component {
       <div className="BucketlistsView">
         <InNavAppBar />
         <h3 >{this.props.match.params.id}</h3>
-        <AddItemForm bucketlistId={this.props.match.params.id} getItems={this.getItems.bind(this)} />
+        <AddItemForm bucketlistId={this.props.match.params.id} getItems={this.getItems} />
         <div className="wrapper">
           {items_list}
         </div>
